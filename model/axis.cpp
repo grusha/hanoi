@@ -16,7 +16,10 @@ Axis::~Axis() {
 }
 
 Disk Axis::pop() {
-	if (disksAmount) return disks[(disksAmount--)-1];
+	if (disksAmount) {
+		--disksAmount;
+		return disks[disksAmount];
+	}
 	else return NULL;
 }
 
@@ -26,6 +29,17 @@ Disk Axis::peek() {
 }
 
 void Axis::push(Disk d) {
-	if (disksAmount<sizeOfAxis) disks[disksAmount++] = d;
-	else cout << "Push: too many disks" << endl;
+	disks[disksAmount++] = d;
+}
+
+int Axis::getAmount() {
+	return disksAmount;
+}
+
+void Axis::description() {
+	if (disksAmount) {
+		for (int i=0; i<disksAmount; ++i)
+		cout << "Disk " << disks[i].getSize() << endl;
+	}
+	else cout << "<empty>" << endl;
 }

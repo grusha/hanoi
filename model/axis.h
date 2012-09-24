@@ -15,5 +15,7 @@ class Axis {
 	Disk pop();
 	Disk peek();
 	void push(Disk);
+	int getAmount();
+	void description();
 };
 #endif
