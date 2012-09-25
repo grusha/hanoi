@@ -16,10 +16,7 @@ Axis::~Axis() {
 }
 
 Disk *Axis::pop() {
-	if (disksAmount) {
-		--disksAmount;
-		return disks[disksAmount];
-	}
+	if (disksAmount) return disks[--disksAmount];
 	else return 0;
 }
 

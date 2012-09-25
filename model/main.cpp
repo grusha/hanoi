@@ -53,7 +53,6 @@ void hanoySolve(int N) {
 	while(turn < maxTurn) {
 		//odd - the least
 		if (!(turn%2)) {
-			cout << "odd" << endl;
 			for (from=0; from<3; ++from)
 				if (field[from]->getAmount() != 0 && 
 					field[from]->peek()->getSize()==MINDISK)
@@ -61,50 +60,45 @@ void hanoySolve(int N) {
 			if (N%2) to = (from+5)%3;
 			else to = (from+1)%3;
 			
-			cout << from << to << endl;
+			cout << from+1 << to+1 << endl;
 			field[to]->push(field[from]->pop());
 			++turn;
 		}
 	
 		//even
 		else {
-			cout << "even" << endl;
 			for (from=0, to=0; from<3; ++from) {
-				if (!field[from]->getAmount()) {
-					cout << from << " continue" << endl;
-					continue;
-				}
-				if ((to=canMoveOdd(field, from))!=-1) {
+				if (!field[from]->getAmount()) continue;
+				to=canMoveOdd(field, from);
+				if (to>-1) {
 					field[to]->push(field[from]->pop());
 					break;
 				}
 			}
-			cout << from << to << endl;
+			cout << from+1 << to+1 << endl;
 			
 			++turn;
 		}
 		
-		for (int i=0; i<3; ++i) {
-		cout << "axis " << i << endl;
-		field[i]->description();
-		cout << endl;
-		}
+		sleep(2);
 	}
 	
 	free(field);
 }
 
 int canMoveOdd(Axis **field, int from) {
-	if (field[from]->peek()->getSize() <= MINDISK) return -1;
-	int to = (from+1)%3;
-	if (field[from]->peek()->getSize()<field[to]->peek()->getSize() ||
-		field[to]->getAmount()==0)
-		return to;
-		
-	else to = (to+1)%3;
+	if (field[from]->peek()->getSize() <= MINDISK)
+		return -1;
 	
-	if (field[from]->peek()->getSize()<field[to]->peek()->getSize() ||
-		field[to]->getAmount()==0)
+	int to = (from+1)%3;
+	if (field[to]->getAmount() < 1) return to;
+	else if (field[from]->peek()->getSize()<field[to]->peek()->getSize())
 		return to;
-	else return -1;
+	else to = (to+1)%3;
+
+	if (field[to]->getAmount() < 1) return to;
+	else if (field[from]->peek()->getSize()<field[to]->peek()->getSize())
+		return to;
+	else
+		return -1;
 }
