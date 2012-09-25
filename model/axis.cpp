@@ -38,8 +38,8 @@ int Axis::getAmount() {
 
 void Axis::description() {
 	if (disksAmount) {
-		for (int i=0; i<disksAmount; ++i)
-		cout << "Disk " << disks[i].getSize() << endl;
+		for (int i=disksAmount; i>0; --i)
+		cout << "Disk " << disks[i-1].getSize() << endl;
 	}
 	else cout << "<empty>" << endl;
 }

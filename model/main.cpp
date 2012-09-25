@@ -59,6 +59,7 @@ void hanoySolve(int N) {
 			else to = (from+1)%3;
 			
 			cout << from << to << endl;
+			cout << field[from].getAmount() << endl;
 			field[to].push(field[from].pop());
 			++turn;
 		}
@@ -80,11 +81,12 @@ void hanoySolve(int N) {
 			
 			++turn;
 		}
+		
 		for (int i=0; i<3; ++i) {
 		cout << "axis " << i << endl;
 		field[i].description();
 		cout << endl;
-	}
+		}
 	}
 	
 	free(field);
