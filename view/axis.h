@@ -4,7 +4,7 @@
 
 class Axis {
 	private:
-	Disk *disks;
+	Disk **disks;
 	int disksAmount;
 	int sizeOfAxis;
 	
@@ -12,8 +12,10 @@ class Axis {
 	Axis(int);
 	~Axis();
 	
-	Disk pop();
-	Disk peek();
-	void push(Disk);
+	Disk *pop();
+	Disk *peek();
+	void push(Disk *);
+	int getAmount();
+	void description();
 };
 #endif

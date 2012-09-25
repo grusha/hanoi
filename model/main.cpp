@@ -40,6 +40,7 @@ int inputCheck(int argc, char** argv) {
 }
 
 void hanoySolve(int N) {
+	cout << N << endl;
 	Axis **field = (Axis **) malloc (3*sizeof(Axis*));
 	for (int i=0; i<3; ++i) field[i] = new Axis(N);
 	for (int i=0; i<N; ++i) {
