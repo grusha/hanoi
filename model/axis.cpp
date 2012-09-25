@@ -6,7 +6,7 @@
 using namespace std;
 
 Axis::Axis(int size) {
-	disks = (Disk *) malloc (size*sizeof(Disk));
+	disks = (Disk **)malloc (size*sizeof(Disk *));
 	disksAmount = 0;
 	sizeOfAxis = size;
 }
@@ -15,17 +15,28 @@ Axis::~Axis() {
 	free(disks);
 }
 
-Disk Axis::pop() {
-	if (disksAmount) return disks[(disksAmount--)-1];
-	else return NULL;
+Disk *Axis::pop() {
+	if (disksAmount) return disks[--disksAmount];
+	else return 0;
 }
 
-Disk Axis::peek() {
+Disk *Axis::peek() {
 	if (disksAmount) return disks[disksAmount-1];
-	else return NULL;
+	else return 0;
 }
 
-void Axis::push(Disk d) {
-	if (disksAmount<sizeOfAxis) disks[disksAmount++] = d;
-	else cout << "Push: too many disks" << endl;
+void Axis::push(Disk *d) {
+	disks[disksAmount++] = d;
+}
+
+int Axis::getAmount() {
+	return disksAmount;
+}
+
+void Axis::description() {
+	if (disksAmount) {
+		for (int i=disksAmount; i>0; --i)
+		cout << "Disk " << disks[i-1]->getSize() << endl;
+	}
+	else cout << "<empty>" << endl;
 }
