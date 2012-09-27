@@ -12,6 +12,6 @@ void Printer::screenHome() {
 }
 
 void Printer::screenToPoint(int i, int j) {
-	printf("%c[%d;%dH", 27, i, j);
+	printf("%c[%d;%dH", 27, j, i);
 	fflush(stdout);
 }
