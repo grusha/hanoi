@@ -52,6 +52,7 @@ void hanoySolve(int N) {
 	int turn = 0;
 	int maxTurn = pow(2, N)-1;
 	while(turn < maxTurn) {
+		sleep(2);
 		//odd - the least
 		if (!(turn%2)) {
 			for (from=0; from<3; ++from)
@@ -81,7 +82,6 @@ void hanoySolve(int N) {
 			++turn;
 		}
 		
-		sleep(2);
 	}
 	
 	free(field);

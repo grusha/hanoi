@@ -16,6 +16,6 @@ class Axis {
 	Disk *peek();
 	void push(Disk *);
 	int getAmount();
-	void description();
+	void printSelf(int, int);
 };
 #endif
