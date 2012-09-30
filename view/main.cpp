@@ -73,6 +73,7 @@ int main(int argc, char** argv)
 		Printer::screenToPoint(0, 3*(N+1)+2);
 		write(1, "Enter <from><to>:", 17);
 	}
+	cout << endl;
 	
 	delete [] c;
 	free(field);
